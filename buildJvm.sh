@@ -13,7 +13,10 @@ fi
 jdeps --ignore-missing-deps -q --recursive --multi-release 17 --print-module-deps --class-path 'target/dependency/*' target/*.jar > target/deps.info
 
 echo "################## Create JVM from dependency ##################"
-jlink  --add-modules $(cat target/deps.info) --strip-debug --compress 2 --no-header-files --no-man-pages --output target/jvm
+jlink  --add-modules "$(cat target/deps.info)" --strip-debug --compress 2 --no-header-files --no-man-pages --output target/jvm
+
+echo "################## Strip libjvm.so ##################"
+strip -p --strip-unneeded target/jvm/lib/server/libjvm.so
 
 echo "JVM created in target/jvm:"
 target/jvm/bin/java --version
