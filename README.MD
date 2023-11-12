@@ -60,10 +60,3 @@ in some jlink implementations which still exists.
 In `Dockerfile` is shown how to create a custom JVM in a multistage docker build
 (this should worked in all environments) and use a very small [distroless](https://github.com/GoogleContainerTools/distroless)
 image at runtime.
-
-
-What we get is:
-
-* Custom JVM - only including stuff we need
-* Smaller docker images
-* More secure images
